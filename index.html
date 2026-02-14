@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FaceRead — Emotion Detector</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+
+  <div class="grid-bg"></div>
+  <div class="scanline"></div>
+
+  <header>
+    <div class="logo">
+      <span class="logo-bracket">[</span>
+      FACE<span class="accent">READ</span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <div class="status-bar">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">INITIALISING...</span>
+    </div>
+  </header>
+
+  <main>
+   
+    <section class="camera-panel">
+      <div class="panel-label">◈ LIVE FEED</div>
+      <div class="video-wrapper">
+        <video id="video" autoplay muted playsinline></video>
+        <canvas id="overlay"></canvas>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        
+        <div class="sweep" id="sweep"></div>
+      </div>
+      <div class="camera-controls">
+        <button id="startBtn" class="btn btn-primary">▶ START CAMERA</button>
+        <button id="stopBtn" class="btn btn-danger" disabled>■ STOP</button>
+        <button id="screenshotBtn" class="btn btn-secondary" disabled>⬡ CAPTURE</button>
+      </div>
+    </section>
+
+    
+    <section class="data-panel">
+      <div class="panel-label">◈ ANALYSIS DATA</div>
+
+      <div class="data-card" id="noFaceMsg">
+        <p class="muted-msg">No face detected.<br/>Start the camera to begin analysis.</p>
+      </div>
+
+      <div id="detectionData" style="display:none;">
+        
+        <div class="metric-row">
+          <span class="metric-label">FACES DETECTED</span>
+          <span class="metric-value" id="faceCount">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">FPS</span>
+          <span class="metric-value" id="fpsDisplay">—</span>
+        </div>
+
+        <div class="divider"></div>
+
+       
+        <div class="dominant-emotion">
+          <div class="de-label">DOMINANT EMOTION</div>
+          <div class="de-value" id="dominantEmotion">—</div>
+          <div class="de-confidence" id="dominantConf"></div>
+        </div>
+
+        <div class="divider"></div>
+
+       
+        <div class="emotions-label">EMOTION SPECTRUM</div>
+        <div id="emotionBars" class="emotion-bars">
+          
+        </div>
+
+        <div class="divider"></div>
+     
+        <div class="metric-row">
+          <span class="metric-label">EST. AGE</span>
+          <span class="metric-value" id="ageDisplay">—</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">GENDER</span>
+          <span class="metric-value" id="genderDisplay">—</span>
+        </div>
+      </div>
+
+      
+      <div class="panel-label" style="margin-top:18px;">◈ EVENT LOG</div>
+      <div id="log" class="log-box">
+        <div class="log-entry">[SYS] FaceRead v1.0 loaded.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Built with face-api.js + TensorFlow.js &nbsp;|&nbsp; Model by Ranisha</span>
+  </footer>
+
+</body>
+</html>
